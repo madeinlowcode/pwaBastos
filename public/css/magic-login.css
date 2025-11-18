@@ -1,0 +1,395 @@
+/* Magic UI Premium Login Styles */
+
+:root {
+  --login-primary: #2563eb;
+  --login-secondary: #1e40af;
+  --login-accent: #3b82f6;
+  --login-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --login-card-bg: rgba(255, 255, 255, 0.95);
+  --login-text: #1e293b;
+  --login-muted: #64748b;
+  --login-border: #e2e8f0;
+  --login-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --login-radius: 24px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body.login-page {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--login-bg);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated background */
+body.login-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
+  animation: float 20s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-30px) rotate(120deg); }
+  66% { transform: translateY(30px) rotate(240deg); }
+}
+
+/* Premium Login Container */
+.magic-login-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 420px;
+}
+
+/* Magic Card Login */
+.magic-login-card {
+  background: var(--login-card-bg);
+  backdrop-filter: blur(20px);
+  border-radius: var(--login-radius);
+  padding: 48px 40px;
+  box-shadow: var(--login-shadow);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  animation: slideInUp 0.6s ease-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.magic-login-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--login-primary), var(--login-accent));
+}
+
+/* Brand Logo */
+.magic-brand {
+  margin-bottom: 40px;
+}
+
+.magic-brand-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 16px;
+  background: linear-gradient(135deg, var(--login-primary), var(--login-accent));
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: white;
+  box-shadow: 0 8px 32px rgba(37, 99, 235, 0.3);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.magic-brand h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--login-text);
+  margin: 0;
+  background: linear-gradient(135deg, var(--login-text), var(--login-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.magic-brand p {
+  color: var(--login-muted);
+  font-size: 1rem;
+  margin: 8px 0 0;
+  font-weight: 500;
+}
+
+/* Form Styles */
+.magic-form {
+  width: 100%;
+}
+
+.magic-input-group {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.magic-input {
+  width: 100%;
+  padding: 16px 20px;
+  font-size: 1rem;
+  border: 2px solid var(--login-border);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.magic-input:focus {
+  border-color: var(--login-primary);
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+  transform: translateY(-1px);
+}
+
+.magic-input::placeholder {
+  color: var(--login-muted);
+  font-weight: 500;
+}
+
+.magic-input-group label {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  color: var(--login-muted);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  background: var(--login-card-bg);
+  padding: 0 8px;
+}
+
+.magic-input:focus + label,
+.magic-input:not(:placeholder-shown) + label {
+  top: -8px;
+  left: 16px;
+  font-size: 0.875rem;
+  color: var(--login-primary);
+  font-weight: 600;
+}
+
+/* Input icons */
+.input-icon {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--login-muted);
+  font-size: 1.125rem;
+  transition: color 0.3s ease;
+}
+
+.magic-input:focus ~ .input-icon {
+  color: var(--login-primary);
+}
+
+/* Remember me and forgot password */
+.magic-form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.magic-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.magic-checkbox input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--login-primary);
+}
+
+.magic-checkbox span {
+  color: var(--login-muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.magic-link {
+  color: var(--login-primary);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.magic-link:hover {
+  color: var(--login-secondary);
+}
+
+/* Magic Button */
+.magic-button {
+  width: 100%;
+  padding: 16px 24px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, var(--login-primary), var(--login-secondary));
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.3);
+}
+
+.magic-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.magic-button:hover::before {
+  left: 100%;
+}
+
+.magic-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+}
+
+.magic-button:active {
+  transform: translateY(0);
+}
+
+.magic-button.loading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.magic-button.loading::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Footer links */
+.magic-footer {
+  margin-top: 32px;
+  text-align: center;
+}
+
+.magic-footer p {
+  color: var(--login-muted);
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.magic-footer a {
+  color: var(--login-primary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.magic-footer a:hover {
+  color: var(--login-secondary);
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  body.login-page {
+    padding: 10px;
+  }
+  
+  .magic-login-card {
+    padding: 32px 24px;
+    margin: 10px;
+    border-radius: 20px;
+  }
+  
+  .magic-brand-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+  
+  .magic-brand h1 {
+    font-size: 1.5rem;
+  }
+  
+  .magic-input {
+    padding: 14px 16px;
+    font-size: 1rem;
+  }
+  
+  .magic-button {
+    padding: 14px 20px;
+    font-size: 1rem;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --login-bg: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    --login-card-bg: rgba(30, 41, 59, 0.95);
+    --login-text: #f1f5f9;
+    --login-muted: #94a3b8;
+    --login-border: #475569;
+  }
+}
+
+/* Focus animations */
+.magic-input:focus ~ .input-focus-ring {
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--login-primary);
+  border-radius: 12px;
+  opacity: 0;
+  animation: focusRing 0.3s ease-out;
+}
+
+@keyframes focusRing {
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}

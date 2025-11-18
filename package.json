@@ -1,0 +1,27 @@
+{
+  "name": "pwaBastos",
+  "version": "1.0.0",
+  "description": "PWA de Agendamento de Consultas com Node.js, Express e Handlebars",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.7.2",
+    "bcrypt": "^6.0.0",
+    "connect-pg-simple": "^10.0.0",
+    "dotenv": "^17.0.1",
+    "express": "^4.18.2",
+    "express-handlebars": "^7.0.7",
+    "express-session": "^1.18.1",
+    "multer": "^2.0.2",
+    "pg": "^8.16.0",
+    "sweetalert2": "^11.22.0",
+    "web-push": "^3.6.7"
+  },
+  "devDependencies": {
+    "@puppeteer/browsers": "^2.10.5",
+    "nodemon": "^2.0.20"
+  }
+}

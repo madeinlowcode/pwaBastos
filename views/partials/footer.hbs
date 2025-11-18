@@ -1,0 +1,25 @@
+<footer class="magic-nav">
+    <div class="nav-container">
+        <a href="/" class="nav-item {{#if isHome}}active{{/if}}">
+            <i class="nav-icon fas fa-home"></i>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="/consultas" class="nav-item {{#if isConsultas}}active{{/if}}">
+            <i class="nav-icon fas fa-calendar-alt"></i>
+            <span class="nav-label">Consultas</span>
+        </a>
+        <a href="/notificacoes" class="nav-item {{#if isNotificacoes}}active{{/if}}">
+            <i class="nav-icon fas fa-bell"></i>
+            <span class="nav-label">Alertas</span>
+        </a>
+        <a href="/perfil" class="nav-item {{#if isPerfil}}active{{/if}}">
+            <i class="nav-icon fas fa-user"></i>
+            <span class="nav-label">Perfil</span>
+        </a>
+    </div>
+</footer>
+
+<!-- Floating Action Button for adding appointments -->
+<button class="fab" onclick="window.location.href='/add-appointment'" title="Agendar consulta">
+    <i class="fas fa-plus"></i>
+</button>

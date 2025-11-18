@@ -1,0 +1,31 @@
+{{> header nomeUsuario=nomeUsuario profilePicture=profilePicture}}
+
+<main class="container">
+    <section class="edit-profile-section">
+        <h2>Editar Perfil</h2>
+        <form id="editProfileForm" class="profile-form">
+            <div class="form-group text-center">
+                <label for="profilePictureInput" class="profile-photo-upload">
+                    <img id="currentProfilePicture" src="{{profilePicture}}" alt="Foto de Perfil">
+                    <i class="fas fa-camera upload-icon"></i>
+                </label>
+                <input type="file" id="profilePictureInput" accept="image/*" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label for="name">Nome:</label>
+                <input type="text" id="name" name="name" value="{{nome}}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="{{email}}" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+            <a href="/perfil" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </section>
+</main>
+
+{{> footer}}

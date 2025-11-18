@@ -1,0 +1,1138 @@
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.5;
+    padding-bottom: 60px; /* Espaço para o footer fixo */
+}
+
+.recovery-instructions {
+    text-align: center;
+    color: #555;
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    padding: 0 10px;
+}
+
+.back-to-login {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.back-to-login a {
+    color: #5d87ff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    font-size: 0.95rem;
+}
+
+.back-to-login a:hover {
+    color: #4a6edb;
+    text-decoration: underline;
+}
+
+body.login-page {
+    padding-bottom: 0;
+}
+
+/* ==============================================
+   CORREÇÕES SWEETALERT PARA MOBILE - VERSÃO APRIMORADA
+   ============================================== */
+
+/* SOLUÇÃO RADICAL: Isolar SweetAlert da página de login */
+body.login-page .swal2-container {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    z-index: 99999 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1rem !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    /* Remover influência do magic-login */
+    transform: none !important;
+    isolation: isolate !important;
+}
+
+/* Popup centralizado para login page */
+body.login-page .swal2-popup {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    margin: 0 auto !important;
+    max-width: min(90vw, 400px) !important;
+    width: auto !important;
+    min-width: 280px !important;
+    /* Sobrescrever estilos de magic-login */
+    background: white !important;
+    border-radius: 12px !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Backdrop específico para login */
+body.login-page .swal2-backdrop-show {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    z-index: 99998 !important;
+}
+
+/* Mobile específico para login page */
+@media (max-width: 768px) {
+    body.login-page .swal2-container {
+        padding: 1rem !important;
+    }
+    
+    body.login-page .swal2-popup {
+        max-width: min(95vw, 350px) !important;
+        min-width: 260px !important;
+        margin: 0 !important;
+    }
+    
+    body.login-page .swal2-title {
+        font-size: 1.2rem !important;
+        margin-bottom: 0.75rem !important;
+        color: #333 !important;
+    }
+    
+    body.login-page .swal2-content {
+        font-size: 0.9rem !important;
+        line-height: 1.4 !important;
+        color: #666 !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    body.login-page .swal2-confirm,
+    body.login-page .swal2-cancel {
+        font-size: 0.9rem !important;
+        padding: 12px 24px !important;
+        min-height: 44px !important;
+        border-radius: 8px !important;
+    }
+    
+    body.login-page .swal2-confirm {
+        background-color: #2563eb !important;
+        border: none !important;
+    }
+}
+
+/* Telas muito pequenas */
+@media (max-width: 480px) {
+    body.login-page .swal2-popup {
+        max-width: 90vw !important;
+        min-width: 240px !important;
+    }
+    
+    body.login-page .swal2-title {
+        font-size: 1.1rem !important;
+    }
+    
+    body.login-page .swal2-content {
+        font-size: 0.85rem !important;
+    }
+}
+
+/* Garantir que outros elementos não interfiram */
+body.login-page .magic-login-container,
+body.login-page .magic-login-card {
+    z-index: 1 !important;
+}
+
+/* Fallback para outras páginas que não sejam login */
+body:not(.login-page) .swal2-container {
+    z-index: 9999 !important;
+}
+
+/* Estilos para a tela de login */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #5d87ff 0%, #13deb9 100%);
+    padding: 20px;
+}
+
+.login-card {
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 450px;
+    padding: 40px;
+    text-align: center;
+}
+
+.app-logo {
+    margin-bottom: 30px;
+}
+
+.app-logo i {
+    font-size: 3.5rem;
+    color: #5d87ff;
+    margin-bottom: 15px;
+}
+
+.app-logo h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #333;
+    letter-spacing: -0.5px;
+}
+
+.login-card .form-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.login-card .form-group input {
+    width: 100%;
+    padding: 15px 20px 15px 50px;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: #f8f9fa;
+}
+
+.login-card .form-group input:focus {
+    border-color: #5d87ff;
+    box-shadow: 0 0 0 3px rgba(93, 135, 255, 0.2);
+    outline: none;
+    background-color: white;
+}
+
+.login-card .form-group i {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #777;
+    font-size: 1.1rem;
+}
+
+.form-options {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #555;
+    cursor: pointer;
+}
+
+.remember-me input {
+    margin-right: 8px;
+}
+
+.forgot-password {
+    color: #5d87ff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.forgot-password:hover {
+    color: #4a6edb;
+    text-decoration: underline;
+}
+
+.btn-primary {
+    background: linear-gradient(to right, #5d87ff, #13deb9);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 16px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 15px rgba(93, 135, 255, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(93, 135, 255, 0.4);
+}
+
+.divider {
+    position: relative;
+    margin: 30px 0;
+    text-align: center;
+}
+
+.divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: #e0e0e0;
+    z-index: 1;
+}
+
+.divider span {
+    position: relative;
+    display: inline-block;
+    padding: 0 15px;
+    background-color: white;
+    color: #777;
+    font-size: 0.9rem;
+    z-index: 2;
+}
+
+.social-login {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.btn-social {
+    flex: 1;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    background-color: white;
+    color: #555;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-social.google:hover {
+    background-color: #f8f9fa;
+    border-color: #d1d1d1;
+}
+
+.btn-social.facebook {
+    background-color: #1877f2;
+    color: white;
+    border-color: #1877f2;
+}
+
+.btn-social.facebook:hover {
+    background-color: #166fe5;
+}
+
+.signup-link {
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.signup-link a {
+    color: #5d87ff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.signup-link a:hover {
+    color: #4a6edb;
+    text-decoration: underline;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.header {
+    background-color: #5d87ff;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.app-title h1 {
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.app-title p {
+    margin: 2px 0 0;
+    font-size: 0.8em;
+    opacity: 0.95;
+    font-weight: 400;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-name {
+    font-size: 0.9em;
+    font-weight: 500;
+    display: none; /* Hidden on small screens */
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.btn-logout {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-logout:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.btn-logout i {
+    font-size: 1.1em;
+}
+
+/* Media query for larger screens to show user name */
+@media (min-width: 600px) {
+    .user-name {
+        display: block;
+    }
+}
+
+/* Estilos para o Modal */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1001; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; /* 5% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%; /* Could be more responsive */
+    max-width: 500px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    position: relative;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.profile-form .form-group {
+    margin-bottom: 15px;
+}
+
+.profile-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #555;
+}
+
+.profile-form input[type="text"],
+.profile-form input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+}
+
+.profile-form .btn-primary {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1em;
+    border-radius: 8px;
+    background-color: #5d87ff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.profile-form .btn-primary:hover {
+    background-color: #4a6edb;
+}
+
+.container {
+    padding: 16px 12px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.consultas-section {
+    margin-bottom: 20px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 0 5px;
+}
+
+.section-header h2 {
+    margin: 0;
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #333;
+}
+
+.filter-dropdown {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    font-size: 0.9em;
+    color: #333;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.consultas-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.consulta-card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.medico-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.medico-info i {
+    color: #5d87ff;
+    font-size: 1.2em;
+    background-color: rgba(93, 135, 255, 0.1);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.medico-info h3 {
+    margin: 0;
+    font-size: 1.1em;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    color: #1f1f1f;
+}
+
+.especialidade {
+    font-size: 0.85em;
+    color: #666;
+    font-weight: 500;
+    background-color: #f8f9fa;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.card-body {
+    margin-bottom: 16px;
+}
+
+.card-body p {
+    margin: 8px 0;
+    font-size: 0.95em;
+    color: #444;
+    display: flex;
+    align-items: center;
+}
+
+.card-body .date-time {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.card-body .location {
+    display: flex;
+    align-items: center;
+}
+
+.card-body i {
+    color: #23AFDB;
+    margin-right: 8px;
+    width: 16px;
+    text-align: center;
+    font-size: 1.1em;
+}
+
+.card-body .icon {
+    margin-right: 8px;
+    color: #23AFDB;
+}
+
+.card-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+    margin-top: 12px;
+}
+
+.btn {
+    padding: 8px 10px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 0.7em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+    flex: 1;
+    text-align: center;
+    letter-spacing: 0.3px;
+    min-height: 32px;
+}
+
+.btn-confirmar {
+    background-color: #13deb9;
+    color: white;
+    box-shadow: 0 2px 5px rgba(19, 222, 185, 0.3);
+}
+
+.btn-confirmar:hover {
+    background-color: #11c9a7;
+    box-shadow: 0 4px 8px rgba(19, 222, 185, 0.4);
+}
+
+.btn-desmarcar {
+    background-color: transparent;
+    color: #AE8E59;
+    border: 1px solid #AE8E59;
+}
+
+.btn-desmarcar:hover {
+    background-color: rgba(174, 142, 89, 0.1);
+}
+
+.btn-cancelar {
+    background-color: transparent;
+    color: #F3704D;
+    border: 1px solid #F3704D;
+}
+
+.btn-cancelar:hover {
+    background-color: rgba(243, 112, 77, 0.1);
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.06);
+    padding: 12px 0 8px;
+    z-index: 100;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+
+.footer-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #757575;
+    font-size: 0.7em;
+    font-weight: 500;
+    padding: 8px 0;
+    transition: all 0.2s ease;
+    width: 25%;
+    text-align: center;
+}
+
+.nav-item i {
+    font-size: 1.5em;
+    margin-bottom: 6px;
+}
+
+.nav-item.active {
+    color: #5d87ff;
+    position: relative;
+}
+
+.nav-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 5px;
+    background-color: #5d87ff;
+    border-radius: 50%;
+}
+
+.nav-item:hover {
+    color: #5d87ff;
+    transform: translateY(-2px);
+}
+
+/* Status dos cards */
+.consulta-card.status-Confirmada {
+    border-left: 4px solid #13deb9;
+}
+
+.consulta-card.status-Confirmada::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #13deb9;
+}
+
+.consulta-card.status-Aguardando {
+    border-left: 4px solid #AE8E59;
+}
+
+.consulta-card.status-Aguardando::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #AE8E59;
+}
+
+.consulta-card.status-Cancelada {
+    border-left: 4px solid #F3704D;
+    opacity: 0.8;
+}
+
+.consulta-card.status-Cancelada::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #F3704D;
+}
+
+/* Estilos para a tela de Perfil */
+.perfil-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.perfil-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.perfil-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 16px;
+    border: 3px solid #5d87ff;
+    box-shadow: 0 4px 12px rgba(93, 135, 255, 0.2);
+}
+
+.perfil-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.perfil-header h2 {
+    margin: 8px 0 0;
+    font-size: 1.4em;
+    font-weight: 600;
+    color: #333;
+}
+
+.perfil-info {
+    margin: 20px 0;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.perfil-info p {
+    margin: 12px 0;
+    font-size: 1em;
+    color: #444;
+    display: flex;
+    align-items: center;
+}
+
+.perfil-info p strong {
+    margin-right: 8px;
+    color: #333;
+}
+
+.perfil-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.perfil-actions .btn {
+    padding: 12px 16px;
+    margin: 0;
+}
+
+.btn-editar {
+    background-color: #5d87ff;
+    color: #fff;
+    box-shadow: 0 2px 5px rgba(93, 135, 255, 0.3);
+}
+
+.btn-senha {
+    background-color: #fff;
+    color: #5d87ff;
+    border: 1px solid #5d87ff;
+}
+
+.btn-sair {
+    background-color: #F3704D;
+    color: #fff;
+    box-shadow: 0 2px 5px rgba(243, 112, 77, 0.3);
+}
+
+/* Estilos para notificações */
+.notificacoes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.notificacao-item {
+    background-color: white;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    position: relative;
+    border-left: 4px solid #23AFDB;
+}
+
+.notificacao-item h3 {
+    margin: 0 0 8px;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #333;
+}
+
+.notificacao-item p {
+    margin: 0 0 12px;
+    font-size: 0.95em;
+    color: #555;
+    line-height: 1.5;
+}
+
+.notificacao-item small {
+    display: block;
+    font-size: 0.8em;
+    color: #777;
+    text-align: right;
+}
+
+/* Media queries para dispositivos móveis */
+@media (max-width: 360px) {
+    .btn {
+        padding: 6px 8px;
+        font-size: 0.65em;
+        min-height: 28px;
+    }
+
+    .card-actions {
+        gap: 4px;
+    }
+
+    .btn i {
+        margin-right: 2px;
+    }
+
+    .consulta-card {
+        padding: 14px 12px;
+    }
+
+    .card-body p {
+        font-size: 0.9em;
+    }
+}
+
+/* Estilos para mensagem de "nenhuma consulta" */
+    .no-consultas-message {
+        text-align: center;
+        color: #777;
+        font-size: 1.1em;
+        padding: 40px 20px;
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        margin-top: 20px;
+    }
+
+    /* Styles for the Add Appointment button on the home page */
+    .btn-add-appointment {
+        background-color: #13deb9;
+        color: white;
+        border: none;
+        border-radius: 50px;
+        padding: 8px 15px;
+        font-size: 0.9em;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        box-shadow: 0 2px 5px rgba(19, 222, 185, 0.3);
+        text-decoration: none; /* Ensure it looks like a button, not a link */
+    }
+
+    .btn-add-appointment:hover {
+        background-color: #11c9a7;
+        box-shadow: 0 4px 8px rgba(19, 222, 185, 0.4);
+        transform: translateY(-1px);
+    }
+
+    /* Styles for the Add Appointment form */
+    .add-appointment-section {
+        background-color: #fff;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        margin-top: 20px;
+    }
+
+    .add-appointment-section h2 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 25px;
+        font-size: 1.5em;
+        font-weight: 600;
+    }
+
+    .appointment-form .form-group {
+        margin-bottom: 20px;
+    }
+
+    .appointment-form label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: #555;
+        font-size: 0.95em;
+    }
+
+    .appointment-form input[type="text"],
+    .appointment-form input[type="date"],
+    .appointment-form input[type="time"] {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 1em;
+        transition: all 0.3s ease;
+        background-color: #f8f9fa;
+    }
+
+    .appointment-form input[type="text"]:focus,
+    .appointment-form input[type="date"]:focus,
+    .appointment-form input[type="time"]:focus {
+        border-color: #5d87ff;
+        box-shadow: 0 0 0 3px rgba(93, 135, 255, 0.2);
+        outline: none;
+        background-color: white;
+    }
+
+    .appointment-form .btn-primary {
+        margin-top: 20px;
+    }
+
+    @media (max-width: 320px) {
+        .btn {
+            padding: 8px;
+            min-width: 32px;
+        }
+
+        .btn span {
+            display: none;
+        }
+
+        .btn i {
+            margin-right: 0;
+            font-size: 1.1em;
+        }
+    }
+
+/* Styles for input groups with icons */
+.input-group {
+    margin-bottom: 20px; /* Add some space between input groups */
+}
+
+.input-with-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-with-icon .input-icon {
+    position: absolute;
+    left: 15px; /* Adjust icon position */
+    color: #777; /* Icon color */
+    font-size: 1.1rem; /* Icon size */
+}
+
+.input-with-icon input[type="password"],
+.input-with-icon input[type="text"],
+.input-with-icon input[type="email"] {
+    width: 100%;
+    padding: 12px 12px 12px 45px; /* Adjust padding to make space for the icon */
+    border: 1px solid #e0e0e0;
+    border-radius: 8px; /* Rounded corners */
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: #f8f9fa; /* Light background for inputs */
+}
+
+.input-with-icon input[type="password"]:focus,
+.input-with-icon input[type="text"]:focus,
+.input-with-icon input[type="email"]:focus {
+    border-color: #5d87ff; /* Highlight color on focus */
+    box-shadow: 0 0 0 3px rgba(93, 135, 255, 0.2);
+    outline: none;
+    background-color: white;
+}
+
+.profile-form small {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.85rem;
+    color: #666;
+}

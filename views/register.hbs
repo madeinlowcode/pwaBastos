@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - PWA Consultas</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/magic-login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#2563eb"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+</head>
+<body class="login-page">
+    <div class="magic-login-container">
+        <div class="magic-login-card">
+            <div class="magic-brand">
+                <div class="magic-brand-icon">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <h1>HealthCare</h1>
+                <p>Criar nova conta</p>
+            </div>
+
+            <form class="magic-form" id="registerForm">
+                <div class="magic-input-group">
+                    <input type="text" id="name" name="name" class="magic-input"
+                           placeholder=" " required minlength="3">
+                    <label for="name">Nome Completo</label>
+                    <i class="fas fa-user input-icon"></i>
+                </div>
+
+                <div class="magic-input-group">
+                    <input type="email" id="email" name="email" class="magic-input"
+                           placeholder=" " required>
+                    <label for="email">Email</label>
+                    <i class="fas fa-envelope input-icon"></i>
+                </div>
+
+                <div class="magic-input-group">
+                    <input type="password" id="password" name="password" class="magic-input"
+                           placeholder=" " required minlength="8" autocomplete="new-password">
+                    <label for="password">Senha</label>
+                    <i class="fas fa-lock input-icon"></i>
+                    <small>Mínimo 8 caracteres</small>
+                </div>
+
+                <div class="magic-input-group">
+                    <input type="password" id="confirmPassword" name="confirmPassword"
+                           class="magic-input" placeholder=" " required autocomplete="new-password">
+                    <label for="confirmPassword">Confirmar Senha</label>
+                    <i class="fas fa-lock input-icon"></i>
+                </div>
+
+                <button type="submit" class="magic-button">
+                    Criar Conta
+                </button>
+
+                <div class="magic-footer">
+                    <p>Já tem uma conta? <a href="/login" class="magic-link">Entrar</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <script src="/js/register.js"></script>
+</body>
+</html>

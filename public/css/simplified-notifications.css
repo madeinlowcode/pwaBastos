@@ -1,0 +1,288 @@
+/* Simplified Notifications - Reduced Cognitive Load Design */
+
+:root {
+  /* Simplified Color Palette - Only 2 urgency levels */
+  --urgent-color: #dc2626;
+  --normal-color: #10b981;
+  
+  /* Calm, medical-friendly colors */
+  --primary-blue: #3b82f6;
+  --soft-gray: #f8fafc;
+  --border-light: #e2e8f0;
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  
+  /* Accessibility-optimized spacing */
+  --touch-target: 48px;
+  --content-spacing: 16px;
+  --border-radius: 12px;
+}
+
+/* Main Container - Focused Layout */
+.simplified-notifications {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: var(--content-spacing);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Simplified Header */
+.notifications-header {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.notifications-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 4px 0;
+}
+
+.notifications-subtitle {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Simplified Notification Cards */
+.notifications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.simple-notification {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: var(--content-spacing);
+  background: white;
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  min-height: var(--touch-target);
+}
+
+.simple-notification:hover {
+  border-color: var(--primary-blue);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);
+}
+
+.simple-notification:focus {
+  outline: 2px solid var(--primary-blue);
+  outline-offset: 2px;
+}
+
+/* Urgency Indicator - Simple Dot System */
+.urgency-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.urgency-dot.alta {
+  background: var(--urgent-color);
+}
+
+.urgency-dot.media,
+.urgency-dot.normal {
+  background: var(--normal-color);
+}
+
+.urgency-dot.unread {
+  box-shadow: 0 0 0 2px white, 0 0 0 4px var(--primary-blue);
+}
+
+/* Main Content - 3 Essential Elements Only */
+.notification-main {
+  flex: 1;
+  min-width: 0; /* Prevent flex item overflow */
+}
+
+.notification-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 4px 0;
+  line-height: 1.3;
+  
+  /* Ensure text doesn't overflow */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.notification-message {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin: 0 0 4px 0;
+  line-height: 1.4;
+  
+  /* Limit to 2 lines max */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.notification-time {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* Single Primary Action - Optimized Touch Target */
+.primary-action {
+  width: var(--touch-target);
+  height: var(--touch-target);
+  border: none;
+  border-radius: 50%;
+  background: var(--primary-blue);
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.primary-action:hover {
+  background: #2563eb;
+  transform: scale(1.05);
+}
+
+.primary-action:focus {
+  outline: 2px solid var(--primary-blue);
+  outline-offset: 2px;
+}
+
+/* Unread State - Subtle Visual Cue */
+.simple-notification.unread {
+  border-left: 4px solid var(--primary-blue);
+  background: #fefeff;
+}
+
+.simple-notification.unread .notification-title {
+  font-weight: 700;
+}
+
+/* Simplified Empty State */
+.empty-state {
+  text-align: center;
+  padding: 48px 24px;
+  background: var(--soft-gray);
+  border-radius: var(--border-radius);
+}
+
+.empty-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 16px;
+  background: var(--normal-color);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.empty-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 8px 0;
+}
+
+.empty-message {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin: 0 0 16px 0;
+}
+
+.simple-action-btn {
+  padding: 12px 24px;
+  background: var(--primary-blue);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: var(--touch-target);
+}
+
+.simple-action-btn:hover {
+  background: #2563eb;
+}
+
+.simple-action-btn:focus {
+  outline: 2px solid var(--primary-blue);
+  outline-offset: 2px;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 480px) {
+  .simplified-notifications {
+    padding: 12px;
+  }
+  
+  .simple-notification {
+    padding: 12px;
+  }
+  
+  .notification-title {
+    font-size: 0.95rem;
+  }
+  
+  .notification-message {
+    font-size: 0.8rem;
+  }
+}
+
+/* Accessibility Enhancements */
+@media (prefers-reduced-motion: reduce) {
+  .simple-notification,
+  .primary-action,
+  .simple-action-btn {
+    transition: none;
+  }
+  
+  .primary-action:hover {
+    transform: none;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .simple-notification {
+    border-width: 2px;
+  }
+  
+  .urgency-dot {
+    border: 2px solid var(--text-primary);
+  }
+  
+  .primary-action,
+  .simple-action-btn {
+    border: 2px solid var(--text-primary);
+  }
+}
+
+/* Focus Management for Screen Readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

@@ -1,0 +1,454 @@
+/* Magic UI Premium Notifications Styles */
+
+:root {
+  --notification-primary: #2563eb;
+  --notification-secondary: #1e40af;
+  --notification-success: #10b981;
+  --notification-warning: #f59e0b;
+  --notification-error: #ef4444;
+  --notification-info: #3b82f6;
+  --notification-bg: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  --notification-card-bg: rgba(255, 255, 255, 0.95);
+  --notification-text: #1e293b;
+  --notification-muted: #64748b;
+  --notification-border: #e2e8f0;
+  --notification-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --notification-radius: 16px;
+  --notification-glow: 0 0 20px rgba(37, 99, 235, 0.1);
+}
+
+/* Container Principal */
+.magic-notifications-container {
+  padding: 20px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Header Premium */
+.magic-notifications-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.magic-notifications-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--notification-text);
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, var(--notification-text), var(--notification-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.magic-notifications-subtitle {
+  color: var(--notification-muted);
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+/* Status Card */
+.magic-status-card {
+  background: var(--notification-card-bg);
+  backdrop-filter: blur(20px);
+  border-radius: var(--notification-radius);
+  padding: 32px;
+  margin-bottom: 24px;
+  box-shadow: var(--notification-shadow);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
+}
+
+.magic-status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.magic-status-indicator.active {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--notification-success);
+}
+
+.magic-status-indicator.inactive {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--notification-error);
+}
+
+.magic-status-indicator.pending {
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--notification-warning);
+}
+
+/* Notification Cards */
+.magic-notification-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.magic-notification-card {
+  background: var(--notification-card-bg);
+  backdrop-filter: blur(20px);
+  border-radius: var(--notification-radius);
+  padding: 20px;
+  box-shadow: var(--notification-shadow);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.magic-notification-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--notification-glow), var(--notification-shadow);
+}
+
+.magic-notification-card.unread {
+  border-left: 4px solid var(--notification-primary);
+  background: rgba(37, 99, 235, 0.05);
+}
+
+.magic-notification-card.read {
+  opacity: 0.8;
+  border-left: 4px solid var(--notification-muted);
+}
+
+.magic-notification-card.success {
+  border-left-color: var(--notification-success);
+  background: rgba(16, 185, 129, 0.05);
+}
+
+.magic-notification-card.warning {
+  border-left-color: var(--notification-warning);
+  background: rgba(245, 158, 11, 0.05);
+}
+
+.magic-notification-card.error {
+  border-left-color: var(--notification-error);
+  background: rgba(239, 68, 68, 0.05);
+}
+
+.magic-notification-card.info {
+  border-left-color: var(--notification-info);
+  background: rgba(59, 130, 246, 0.05);
+}
+
+/* Notification Content */
+.magic-notification-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.magic-notification-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: white;
+  flex-shrink: 0;
+}
+
+.magic-notification-icon.success {
+  background: linear-gradient(135deg, var(--notification-success), #059669);
+}
+
+.magic-notification-icon.warning {
+  background: linear-gradient(135deg, var(--notification-warning), #d97706);
+}
+
+.magic-notification-icon.error {
+  background: linear-gradient(135deg, var(--notification-error), #dc2626);
+}
+
+.magic-notification-icon.info {
+  background: linear-gradient(135deg, var(--notification-info), #2563eb);
+}
+
+.magic-notification-details {
+  flex: 1;
+}
+
+.magic-notification-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--notification-text);
+  margin-bottom: 4px;
+}
+
+.magic-notification-message {
+  color: var(--notification-muted);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.magic-notification-time {
+  color: var(--notification-muted);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* Notification Actions */
+.magic-notification-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--notification-border);
+}
+
+.magic-notification-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.magic-notification-btn.primary {
+  background: var(--notification-primary);
+  color: white;
+}
+
+.magic-notification-btn.primary:hover {
+  background: var(--notification-secondary);
+  transform: translateY(-1px);
+}
+
+.magic-notification-btn.secondary {
+  background: transparent;
+  color: var(--notification-muted);
+  border: 1px solid var(--notification-border);
+}
+
+.magic-notification-btn.secondary:hover {
+  background: var(--notification-border);
+  color: var(--notification-text);
+}
+
+/* Empty State */
+.magic-empty-state {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.magic-empty-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  background: linear-gradient(135deg, var(--notification-muted), #cbd5e1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: white;
+  opacity: 0.7;
+}
+
+.magic-empty-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--notification-text);
+  margin-bottom: 8px;
+}
+
+.magic-empty-message {
+  color: var(--notification-muted);
+  font-size: 1rem;
+}
+
+/* Test Section */
+.magic-test-section {
+  background: var(--notification-card-bg);
+  backdrop-filter: blur(20px);
+  border-radius: var(--notification-radius);
+  padding: 32px;
+  margin-top: 24px;
+  box-shadow: var(--notification-shadow);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
+}
+
+.magic-test-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--notification-text);
+  margin-bottom: 8px;
+}
+
+.magic-test-description {
+  color: var(--notification-muted);
+  font-size: 0.875rem;
+  margin-bottom: 20px;
+}
+
+.magic-test-btn {
+  padding: 12px 24px;
+  background: linear-gradient(135deg, var(--notification-primary), var(--notification-secondary));
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.magic-test-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* Bulk Actions */
+.magic-bulk-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 16px;
+  background: var(--notification-card-bg);
+  border-radius: var(--notification-radius);
+  box-shadow: var(--notification-shadow);
+}
+
+.magic-bulk-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--notification-text);
+}
+
+.magic-bulk-btn {
+  padding: 8px 16px;
+  background: transparent;
+  color: var(--notification-primary);
+  border: 1px solid var(--notification-primary);
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.magic-bulk-btn:hover {
+  background: var(--notification-primary);
+  color: white;
+}
+
+/* Animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+}
+
+.magic-notification-card {
+  animation: slideIn 0.3s ease-out;
+}
+
+.magic-notification-card.removing {
+  animation: fadeOut 0.3s ease-out forwards;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .magic-notifications-container {
+    padding: 16px;
+  }
+  
+  .magic-notification-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .magic-notification-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .magic-notification-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .magic-bulk-actions {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .magic-status-card,
+  .magic-notification-card,
+  .magic-test-section {
+    padding: 20px;
+    margin: 0 -16px;
+    border-radius: 0;
+  }
+  
+  .magic-notifications-title {
+    font-size: 1.75rem;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --notification-bg: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    --notification-card-bg: rgba(30, 41, 59, 0.95);
+    --notification-text: #f1f5f9;
+    --notification-muted: #94a3b8;
+    --notification-border: #475569;
+  }
+}
+
+/* Loading skeleton */
+.magic-skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 4px;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

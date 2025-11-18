@@ -1,0 +1,82 @@
+<div class="modern-appointment-card status-{{status}}" data-id="{{id}}" data-status="{{status}}">
+    <!-- Priority DateTime Section -->
+    <div class="appointment-datetime">
+        <div class="datetime-main">
+            <span class="appointment-date">{{data}}</span>
+            <span class="appointment-time">{{hora}}</span>
+        </div>
+        <div class="status-indicator {{status}}">
+            <i class="fas fa-circle"></i>
+        </div>
+    </div>
+
+    <!-- Doctor Information (Condensed) -->
+    <div class="appointment-info">
+        <div class="doctor-info">
+            <div class="doctor-avatar">
+                <i class="fas fa-user-md"></i>
+            </div>
+            <div class="doctor-details">
+                <h3 class="doctor-name">{{medico}}</h3>
+                <span class="doctor-specialty">{{especialidade}}</span>
+            </div>
+        </div>
+        
+        <!-- Location (Secondary) -->
+        <div class="appointment-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>{{local}}</span>
+        </div>
+    </div>
+
+    <!-- Smart Action System -->
+    <div class="appointment-actions">
+        <!-- Primary Action (Status-Aware) -->
+        <button class="primary-action-btn {{status}}" data-action="primary" data-appointment-id="{{id}}">
+            <span class="action-text">Confirmar</span>
+            <i class="fas fa-check action-icon"></i>
+        </button>
+        
+        <!-- Secondary Actions Menu -->
+        <div class="secondary-actions">
+            <button class="secondary-menu-btn" data-appointment-id="{{id}}" aria-label="Mais opções">
+                <i class="fas fa-ellipsis-h"></i>
+            </button>
+            
+            <!-- Hidden Menu (Toggleable) -->
+            <div class="secondary-menu" data-appointment-id="{{id}}">
+                <button class="menu-action" data-action="reschedule" data-appointment-id="{{id}}">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Reagendar</span>
+                </button>
+                <button class="menu-action danger" data-action="cancel" data-appointment-id="{{id}}">
+                    <i class="fas fa-times"></i>
+                    <span>Cancelar</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Expandable Details (Progressive Disclosure) -->
+    <div class="expandable-details" data-appointment-id="{{id}}">
+        <button class="expand-toggle" data-appointment-id="{{id}}">
+            <span>Ver detalhes</span>
+            <i class="fas fa-chevron-down"></i>
+        </button>
+        
+        <div class="expanded-content">
+            <div class="detail-row">
+                <i class="fas fa-info-circle"></i>
+                <span>Consulta de {{especialidade}}</span>
+            </div>
+            <div class="detail-row">
+                <i class="fas fa-phone"></i>
+                <span>Contato do consultório</span>
+            </div>
+            <div class="detail-row">
+                <i class="fas fa-directions"></i>
+                <span>Como chegar</span>
+            </div>
+        </div>
+    </div>
+</div>

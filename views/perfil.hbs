@@ -1,0 +1,253 @@
+{{> header nomeUsuario=nomeUsuario profilePicture=profilePicture}}
+
+<link rel="stylesheet" href="/css/modern-profile.css">
+
+<div class="modern-profile">
+    <!-- Profile Hero Section -->
+    <section class="profile-hero">
+        <div class="profile-background">
+            <div class="background-pattern"></div>
+        </div>
+        
+        <div class="profile-card">
+            <!-- Profile Picture with Upload -->
+            <div class="profile-picture-container">
+                <div class="profile-picture" onclick="openAvatarModal()">
+                    {{#if profilePicture}}
+                        <img id="profileImage" src="{{profilePicture}}" alt="{{nome}}" class="profile-img" onerror="this.style.display='none'; this.parentElement.querySelector('.profile-initials').style.display='flex'; this.parentElement.querySelector('.profile-initials').classList.add('show-initials');">
+                        <div class="profile-initials">{{getInitials nome}}</div>
+                    {{else}}
+                        <div class="profile-initials show-initials">{{getInitials nome}}</div>
+                    {{/if}}
+                    <div class="picture-overlay">
+                        <div class="picture-upload-btn">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="online-indicator"></div>
+            </div>
+
+            <!-- User Info -->
+            <div class="user-info">
+                <h1 class="user-name">{{nome}}</h1>
+                <p class="user-email">{{email}}</p>
+                <div class="user-meta">
+                    <span class="join-date">
+                        <i class="fas fa-calendar-alt"></i>
+                        Membro desde Janeiro 2024
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profile Stats -->
+    <section class="profile-stats">
+        <div class="stat-card">
+            <div class="stat-icon appointment">
+                <i class="fas fa-calendar-check"></i>
+            </div>
+            <div class="stat-info">
+                <span class="stat-number">12</span>
+                <span class="stat-label">Consultas</span>
+            </div>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-icon notification">
+                <i class="fas fa-bell"></i>
+            </div>
+            <div class="stat-info">
+                <span class="stat-number">3</span>
+                <span class="stat-label">Avisos</span>
+            </div>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-icon health">
+                <i class="fas fa-heartbeat"></i>
+            </div>
+            <div class="stat-info">
+                <span class="stat-number">100%</span>
+                <span class="stat-label">Saúde</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Actions -->
+    <section class="quick-actions">
+        <h2 class="section-title">Ações Rápidas</h2>
+        
+        <div class="action-grid">
+            <button class="action-card edit-profile" data-action="edit">
+                <div class="action-icon">
+                    <i class="fas fa-user-edit"></i>
+                </div>
+                <div class="action-content">
+                    <h3>Editar Perfil</h3>
+                    <p>Atualizar informações pessoais</p>
+                </div>
+                <div class="action-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </button>
+
+            <button class="action-card change-password" data-action="password">
+                <div class="action-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="action-content">
+                    <h3>Alterar Senha</h3>
+                    <p>Manter conta segura</p>
+                </div>
+                <div class="action-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </button>
+
+            <button class="action-card notifications" data-action="notifications">
+                <div class="action-icon">
+                    <i class="fas fa-cog"></i>
+                </div>
+                <div class="action-content">
+                    <h3>Configurações</h3>
+                    <p>Notificações e privacidade</p>
+                </div>
+                <div class="action-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </button>
+
+            <a href="/logout" class="action-card logout">
+                <div class="action-icon">
+                    <i class="fas fa-sign-out-alt"></i>
+                </div>
+                <div class="action-content">
+                    <h3>Sair</h3>
+                    <p>Encerrar sessão</p>
+                </div>
+                <div class="action-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </a>
+        </div>
+    </section>
+</div>
+
+<!-- Modern Edit Profile Modal -->
+<div id="modernEditModal" class="modern-modal">
+    <div class="modal-overlay" data-dismiss="modal"></div>
+    <div class="modal-container">
+        <div class="modal-header">
+            <h2>Editar Perfil</h2>
+            <button class="modal-close" data-dismiss="modal">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <form id="modernEditForm" class="modal-form">
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="editName">Nome completo</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-user input-icon"></i>
+                        <input type="text" id="editName" name="name" value="{{nome}}" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="editEmail">Email</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope input-icon"></i>
+                        <input type="email" id="editEmail" name="email" value="{{email}}" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i>
+                    Salvar Alterações
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modern Change Password Modal -->
+<div id="modernPasswordModal" class="modern-modal">
+    <div class="modal-overlay" data-dismiss="modal"></div>
+    <div class="modal-container">
+        <div class="modal-header">
+            <h2>Alterar Senha</h2>
+            <button class="modal-close" data-dismiss="modal">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <form id="modernPasswordForm" class="modal-form">
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="currentPass">Senha atual</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" id="currentPass" name="currentPassword" required>
+                        <button type="button" class="password-toggle" data-target="currentPass">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="newPass">Nova senha</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-key input-icon"></i>
+                        <input type="password" id="newPass" name="newPassword" required>
+                        <button type="button" class="password-toggle" data-target="newPass">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <small class="help-text">Mínimo 8 caracteres</small>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="confirmPass">Confirmar nova senha</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-key input-icon"></i>
+                        <input type="password" id="confirmPass" name="confirmPassword" required>
+                        <button type="button" class="password-toggle" data-target="confirmPass">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="password-strength">
+                <div class="strength-bar">
+                    <div class="strength-fill"></div>
+                </div>
+                <span class="strength-text">Digite uma senha</span>
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i>
+                    Alterar Senha
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="/js/modern-profile.js"></script>
+
+{{> footer}}

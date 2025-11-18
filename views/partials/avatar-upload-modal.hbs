@@ -1,0 +1,189 @@
+<div id="uploadAvatarModal" class="avatar-upload-modal">
+    <div class="avatar-modal-content">
+        <button class="modal-close" onclick="closeAvatarModal()">
+            <i class="fas fa-times"></i>
+        </button>
+
+        <h2>Atualizar Avatar</h2>
+        <p>Escolha uma imagem para seu perfil</p>
+
+        <form id="avatarUploadForm" enctype="multipart/form-data">
+            <div class="file-input-wrapper">
+                <label for="avatarFileInput" class="file-input-label">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <span>Clique para selecionar ou arraste uma imagem</span>
+                </label>
+                <input type="file" id="avatarFileInput" name="avatar" accept="image/*" required>
+            </div>
+
+            <div class="avatar-preview" id="avatarPreview">
+                <img id="previewImage" alt="Preview">
+                <p id="previewFileName"></p>
+            </div>
+
+            <div class="modal-buttons">
+                <button type="button" class="btn-secondary" onclick="closeAvatarModal()">
+                    Cancelar
+                </button>
+                <button type="submit" class="btn-primary" id="submitAvatarBtn">
+                    <span id="btnText">Enviar</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    const avatarFileInput = document.getElementById('avatarFileInput');
+    const avatarPreview = document.getElementById('avatarPreview');
+    const previewImage = document.getElementById('previewImage');
+    const previewFileName = document.getElementById('previewFileName');
+    const avatarUploadForm = document.getElementById('avatarUploadForm');
+    const submitAvatarBtn = document.getElementById('submitAvatarBtn');
+    const btnText = document.getElementById('btnText');
+
+    // Função global para abrir o modal
+    window.openAvatarModal = function() {
+        document.getElementById('uploadAvatarModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    };
+
+    // Função global para fechar o modal
+    window.closeAvatarModal = function() {
+        document.getElementById('uploadAvatarModal').classList.remove('active');
+        document.body.style.overflow = '';
+        avatarPreview.classList.remove('show');
+        avatarUploadForm.reset();
+    };
+
+    // Fechar quando clicar fora do modal
+    document.getElementById('uploadAvatarModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeAvatarModal();
+        }
+    });
+
+    // Preview da imagem
+    avatarFileInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                previewImage.src = e.target.result;
+                previewFileName.textContent = file.name;
+                avatarPreview.classList.add('show');
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    // Drag and drop
+    const fileInputLabel = document.querySelector('.file-input-label');
+
+    fileInputLabel.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        fileInputLabel.style.borderColor = 'var(--primary-500)';
+        fileInputLabel.style.background = 'var(--primary-100)';
+    });
+
+    fileInputLabel.addEventListener('dragleave', () => {
+        fileInputLabel.style.borderColor = 'var(--primary-300)';
+        fileInputLabel.style.background = 'var(--primary-50)';
+    });
+
+    fileInputLabel.addEventListener('drop', (e) => {
+        e.preventDefault();
+        fileInputLabel.style.borderColor = 'var(--primary-300)';
+        fileInputLabel.style.background = 'var(--primary-50)';
+
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+            avatarFileInput.files = files;
+            const event = new Event('change', { bubbles: true });
+            avatarFileInput.dispatchEvent(event);
+        }
+    });
+
+    // Envio do formulário
+    avatarUploadForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const file = avatarFileInput.files[0];
+        if (!file) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Nenhuma imagem selecionada',
+                text: 'Por favor, selecione uma imagem para fazer upload'
+            });
+            return;
+        }
+
+        // Validar tamanho (máximo 5MB)
+        const maxSize = 5 * 1024 * 1024;
+        if (file.size > maxSize) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Arquivo muito grande',
+                text: 'A imagem não pode exceder 5MB'
+            });
+            return;
+        }
+
+        // Validar tipo
+        if (!file.type.startsWith('image/')) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Tipo de arquivo inválido',
+                text: 'Por favor, selecione uma imagem (JPG, PNG, GIF, etc)'
+            });
+            return;
+        }
+
+        // Desabilitar botão e mostrar loading
+        submitAvatarBtn.disabled = true;
+        btnText.innerHTML = '<i class="fas fa-spinner fa-spin" style="margin-right: 8px;"></i>Enviando...';
+
+        try {
+            const formData = new FormData();
+            formData.append('avatar', file);
+
+            const response = await fetch('/perfil/upload-avatar', {
+                method: 'POST',
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sucesso!',
+                    text: 'Avatar atualizado com sucesso',
+                    timer: 1500
+                }).then(() => {
+                    closeAvatarModal();
+                    // Recarregar página para mostrar novo avatar
+                    setTimeout(() => {
+                        location.reload();
+                    }, 500);
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro ao fazer upload',
+                    text: data.message || 'Ocorreu um erro ao fazer upload da imagem'
+                });
+            }
+        } catch (error) {
+            console.error('Erro:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro ao conectar',
+                text: 'Erro de conexão ao fazer upload da imagem'
+            });
+        } finally {
+            submitAvatarBtn.disabled = false;
+            btnText.innerHTML = 'Enviar';
+        }
+    });
+</script>

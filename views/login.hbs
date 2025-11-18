@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - PWA Consultas</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/magic-login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#2563eb"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+</head>
+<body class="login-page">
+    <div class="magic-login-container">
+        <div class="magic-login-card">
+            <div class="magic-brand">
+                <div class="magic-brand-icon">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <h1>HealthCare</h1>
+                <p>Seu gerenciador de consultas médicas</p>
+            </div>
+            
+            <form class="magic-form" id="loginForm">
+                <div class="magic-input-group">
+                    <input type="email" id="email" name="email" class="magic-input" placeholder=" " required>
+                    <label for="email">Email</label>
+                    <i class="fas fa-envelope input-icon"></i>
+                </div>
+                
+                <div class="magic-input-group">
+                    <input type="password" id="password" name="password" class="magic-input" placeholder=" " required>
+                    <label for="password">Senha</label>
+                    <i class="fas fa-lock input-icon"></i>
+                </div>
+                
+                <div class="magic-form-options">
+                    <label class="magic-checkbox">
+                        <input type="checkbox" name="remember">
+                        <span>Lembrar-me</span>
+                    </label>
+                    <a href="/esqueceu-senha" class="magic-link">Esqueceu a senha?</a>
+                </div>
+                
+                <button type="submit" class="magic-button">
+                    Entrar
+                </button>
+                
+                <div class="magic-footer">
+                    <p>Não tem uma conta? <a href="/register" class="magic-link">Cadastre-se</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <script src="/js/login.js"></script>
+</body>
+</html>

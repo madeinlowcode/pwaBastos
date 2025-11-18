@@ -1,0 +1,64 @@
+{{> header nomeUsuario=nomeUsuario profilePicture=profilePicture}}
+
+<main class="modern-appointments-container">
+    <section class="appointments-section">
+        <div class="section-header">
+            <h1 class="section-title">Próximas Consultas</h1>
+            <p class="section-subtitle">Suas consultas médicas em destaque</p>
+            
+            <!-- Filter Dropdown (Home specific) -->
+            <div class="home-filter-section">
+                <select class="modern-filter-dropdown">
+                    <option value="todas">Todas</option>
+                    <option value="hoje">Hoje</option>
+                    <option value="semana">Esta Semana</option>
+                    <option value="mes">Este Mês</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="appointments-list">
+            {{#if consultas}}
+                {{#each consultas}}
+                    {{> consultaCard 
+                        id=this.id
+                        medico=this.medico 
+                        especialidade=this.especialidade 
+                        data=this.data 
+                        hora=this.hora 
+                        local=this.local
+                        status=this.status
+                    }}
+                {{/each}}
+            {{else}}
+                <div class="empty-appointments">
+                    <div class="empty-icon">
+                        <i class="fas fa-calendar-plus"></i>
+                    </div>
+                    <h3 class="empty-title">Nenhuma consulta agendada</h3>
+                    <p class="empty-message">Que tal agendar sua primeira consulta?</p>
+                    <button class="add-appointment-btn" onclick="window.location.href='/add-appointment'">
+                        <i class="fas fa-plus"></i>
+                        <span>Agendar consulta</span>
+                    </button>
+                </div>
+            {{/if}}
+        </div>
+        
+        <!-- Quick Actions for Home -->
+        {{#if consultas}}
+        <div class="home-quick-actions">
+            <button class="quick-action-btn" onclick="window.location.href='/add-appointment'">
+                <i class="fas fa-plus"></i>
+                <span>Nova Consulta</span>
+            </button>
+            <button class="quick-action-btn" onclick="window.location.href='/consultas'">
+                <i class="fas fa-list"></i>
+                <span>Ver Todas</span>
+            </button>
+        </div>
+        {{/if}}
+    </section>
+</main>
+
+{{> footer}}

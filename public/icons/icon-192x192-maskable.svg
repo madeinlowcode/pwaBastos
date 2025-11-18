@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="192" height="192" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg">
+  <!-- Full bleed background -->
+  <rect width="192" height="192" fill="#1a73e8"/>
+
+  <!-- Safe area circle -->
+  <circle cx="96" cy="96" r="76.8" fill="#1a73e8" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+
+  <!-- Medical cross in safe area -->
+  <g transform="translate(96, 96)">
+    <!-- Vertical bar -->
+    <rect x="-19.2" y="-51.199999999999996" width="38.4" height="102.39999999999999" rx="9.6" fill="#ffffff"/>
+    <!-- Horizontal bar -->
+    <rect x="-51.199999999999996" y="-19.2" width="102.39999999999999" height="38.4" rx="9.6" fill="#ffffff"/>
+  </g>
+</svg>

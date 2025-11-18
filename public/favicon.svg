@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="16" cy="16" r="16" fill="#1a73e8"/>
+
+  <!-- Medical cross -->
+  <g transform="translate(16, 16)">
+    <!-- Vertical bar -->
+    <rect x="-4" y="-10.666666666666666" width="8" height="21.333333333333332" rx="2" fill="#ffffff"/>
+    <!-- Horizontal bar -->
+    <rect x="-10.666666666666666" y="-4" width="21.333333333333332" height="8" rx="2" fill="#ffffff"/>
+  </g>
+
+  <!-- Subtle shadow for depth -->
+  <circle cx="16" cy="16" r="16" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="2"/>
+</svg>

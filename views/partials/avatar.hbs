@@ -1,0 +1,10 @@
+<div class="user-avatar-container" data-initials="{{initials}}" data-has-picture="{{#if profilePicture}}true{{else}}false{{/if}}" onclick="openAvatarModal()">
+    {{#if profilePicture}}
+        <!-- Avatar com imagem -->
+        <img src="{{profilePicture}}" alt="Avatar - {{userName}}" class="avatar-image" onerror="this.parentElement.querySelector('.avatar-initials').style.display='flex'; this.parentElement.querySelector('.avatar-initials').classList.add('show-initials'); this.style.display='none';">
+        <div class="avatar-initials">{{initials}}</div>
+    {{else}}
+        <!-- Avatar com iniciais -->
+        <div class="avatar-initials show-initials">{{initials}}</div>
+    {{/if}}
+</div>

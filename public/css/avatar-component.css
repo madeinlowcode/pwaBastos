@@ -1,0 +1,263 @@
+/* Avatar Component Styles */
+
+.user-avatar-container {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    overflow: visible;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    background: linear-gradient(135deg, var(--primary-500), var(--primary-600));
+}
+
+.user-avatar-container:hover {
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.6);
+    border-color: rgba(255, 255, 255, 0.6);
+    transform: scale(1.05);
+}
+
+/* Avatar Image */
+.avatar-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: var(--radius-full);
+}
+
+/* Avatar with Initials */
+.avatar-initials {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-weight: 700;
+    font-size: 1rem;
+    color: white;
+    text-transform: uppercase;
+    z-index: 1;
+}
+
+.avatar-initials.show-initials {
+    display: flex !important;
+}
+
+/* Avatar Edit Button - Not used in header, click entire avatar to edit */
+.avatar-edit-btn {
+    display: none;
+}
+
+/* Avatar Modal */
+.avatar-upload-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-upload-modal.active {
+    display: flex;
+}
+
+.avatar-modal-content {
+    background: white;
+    border-radius: var(--radius-2xl);
+    padding: var(--space-6);
+    max-width: 400px;
+    width: 90%;
+    box-shadow: var(--shadow-xl);
+    animation: slideUp 300ms ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.avatar-modal-content h2 {
+    margin-top: 0;
+    color: var(--gray-900);
+    font-size: var(--font-size-lg);
+}
+
+.avatar-modal-content p {
+    color: var(--gray-600);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--space-4);
+}
+
+/* File Input Styles */
+.file-input-wrapper {
+    position: relative;
+    margin-bottom: var(--space-4);
+}
+
+.file-input-wrapper input[type="file"] {
+    display: none;
+}
+
+.file-input-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: var(--space-4);
+    border: 2px dashed var(--primary-300);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    background: var(--primary-50);
+    color: var(--primary-600);
+    font-weight: 500;
+}
+
+.file-input-label:hover {
+    border-color: var(--primary-500);
+    background: var(--primary-100);
+}
+
+.file-input-label i {
+    margin-right: var(--space-2);
+    font-size: var(--font-size-lg);
+}
+
+/* Preview */
+.avatar-preview {
+    text-align: center;
+    margin-bottom: var(--space-4);
+    display: none;
+}
+
+.avatar-preview.show {
+    display: block;
+}
+
+.avatar-preview img {
+    width: 100px;
+    height: 100px;
+    border-radius: var(--radius-xl);
+    object-fit: cover;
+    border: 2px solid var(--primary-300);
+    margin-bottom: var(--space-2);
+}
+
+.avatar-preview p {
+    font-size: var(--font-size-xs);
+    color: var(--gray-500);
+}
+
+/* Modal Buttons */
+.modal-buttons {
+    display: flex;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+}
+
+.modal-buttons button {
+    flex: 1;
+    padding: var(--space-3) var(--space-4);
+    border: none;
+    border-radius: var(--radius-lg);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    font-size: var(--font-size-sm);
+}
+
+.modal-buttons .btn-primary {
+    background: linear-gradient(135deg, var(--primary-500), var(--primary-600));
+    color: white;
+    box-shadow: var(--shadow-md);
+}
+
+.modal-buttons .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-lg);
+}
+
+.modal-buttons .btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.modal-buttons .btn-secondary {
+    background: var(--gray-100);
+    color: var(--gray-700);
+    border: 1px solid var(--gray-300);
+}
+
+.modal-buttons .btn-secondary:hover {
+    background: var(--gray-200);
+}
+
+/* Loading State */
+.uploading .btn-primary {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.uploading .spinner {
+    display: inline-block;
+    margin-right: var(--space-2);
+}
+
+/* Close Button */
+.modal-close {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-4);
+    width: 32px;
+    height: 32px;
+    background: var(--gray-100);
+    border: none;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    font-size: var(--font-size-lg);
+    color: var(--gray-600);
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-close:hover {
+    background: var(--gray-200);
+    color: var(--gray-900);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .avatar-modal-content {
+        width: 95%;
+        padding: var(--space-4);
+    }
+
+    .modal-buttons {
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,64 @@
+{{> header nomeUsuario=nomeUsuario profilePicture=profilePicture}}
+
+<link rel="stylesheet" href="/css/simplified-notifications.css">
+
+<div class="simplified-notifications">
+    <!-- Simplified Header -->
+    <header class="notifications-header">
+        <h1 class="notifications-title">Seus Avisos</h1>
+        <p class="notifications-subtitle">{{notificacoes.length}} aviso(s) pendente(s)</p>
+    </header>
+
+    <!-- Simplified Notifications List -->
+    <main class="notifications-list" role="main">
+        {{#if notificacoes.length}}
+            {{#each notificacoes}}
+                <article class="simple-notification {{this.urgencia}} {{#unless this.lida}}unread{{/unless}}" 
+                         data-id="{{this.id}}" 
+                         tabindex="0"
+                         role="button"
+                         aria-label="{{this.titulo}}">
+                    
+                    <!-- Urgency Indicator -->
+                    <div class="urgency-dot {{this.urgencia}}"></div>
+                    
+                    <!-- Main Content (3 essential elements only) -->
+                    <div class="notification-main">
+                        <h2 class="notification-title">{{this.titulo}}</h2>
+                        <p class="notification-message">{{this.mensagem}}</p>
+                        <time class="notification-time">{{formatDate this.data}}</time>
+                    </div>
+
+                    <!-- Single Primary Action -->
+                    {{#unless this.lida}}
+                        <button class="primary-action" 
+                                onclick="handleNotificationAction('{{this.id}}', '{{this.tipo}}')"
+                                aria-label="Ação principal">
+                            {{#if this.tipo}}
+                                <i class="fas fa-calendar-check"></i>
+                            {{else}}
+                                <i class="fas fa-check"></i>
+                            {{/if}}
+                        </button>
+                    {{/unless}}
+                </article>
+            {{/each}}
+        {{else}}
+            <!-- Simplified Empty State -->
+            <div class="empty-state">
+                <div class="empty-icon">
+                    <i class="fas fa-check-circle" aria-hidden="true"></i>
+                </div>
+                <h2 class="empty-title">Tudo certo!</h2>
+                <p class="empty-message">Nenhum aviso no momento.</p>
+                <button class="simple-action-btn" onclick="window.location.href='/consultas'">
+                    Ver consultas
+                </button>
+            </div>
+        {{/if}}
+    </main>
+</div>
+
+<script src="/js/simplified-notifications.js"></script>
+
+{{> footer}}

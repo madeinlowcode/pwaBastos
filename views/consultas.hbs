@@ -1,0 +1,40 @@
+{{> header nomeUsuario=nomeUsuario profilePicture=profilePicture}}
+
+<main class="modern-appointments-container">
+    <section class="appointments-section">
+        <div class="section-header">
+            <h1 class="section-title">Suas Consultas</h1>
+            <p class="section-subtitle">Gerencie suas consultas médicas</p>
+        </div>
+        
+        <div class="appointments-list">
+            {{#if consultas}}
+                {{#each consultas}}
+                    {{> consultaCard 
+                        id=this.id
+                        medico=this.medico 
+                        especialidade=this.especialidade 
+                        data=this.data 
+                        hora=this.hora 
+                        local=this.local
+                        status=this.status
+                    }}
+                {{/each}}
+            {{else}}
+                <div class="empty-appointments">
+                    <div class="empty-icon">
+                        <i class="fas fa-calendar-plus"></i>
+                    </div>
+                    <h3 class="empty-title">Nenhuma consulta agendada</h3>
+                    <p class="empty-message">Quando você agendar consultas, elas aparecerão aqui.</p>
+                    <button class="add-appointment-btn">
+                        <i class="fas fa-plus"></i>
+                        <span>Agendar consulta</span>
+                    </button>
+                </div>
+            {{/if}}
+        </div>
+    </section>
+</main>
+
+{{> footer}}
