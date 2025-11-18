@@ -42,7 +42,15 @@ const loginUser = async (req, res) => {
         req.session.userEmail = user.email;
         console.log('Session userId set:', req.session.userId);
 
-        res.json({ message: 'Login bem-sucedido!' });
+        // Garantir que a sessão seja salva antes de retornar a resposta
+        req.session.save((err) => {
+            if (err) {
+                console.error('Erro ao salvar sessão:', err);
+                return res.status(500).json({ message: 'Erro ao salvar sessão.' });
+            }
+            console.log('Session saved successfully');
+            res.json({ message: 'Login bem-sucedido!' });
+        });
 
     } catch (err) {
         console.error('Erro no login:', err);
@@ -189,13 +197,21 @@ const registerUser = async (req, res) => {
         req.session.userName = newUser.name;
         req.session.userEmail = newUser.email;
 
-        res.json({
-            message: 'Cadastro realizado com sucesso!',
-            user: {
-                id: newUser.id,
-                name: newUser.name,
-                email: newUser.email
+        // Garantir que a sessão seja salva antes de retornar a resposta
+        req.session.save((err) => {
+            if (err) {
+                console.error('Erro ao salvar sessão:', err);
+                return res.status(500).json({ message: 'Erro ao salvar sessão.' });
             }
+            console.log('Session saved successfully for new user');
+            res.json({
+                message: 'Cadastro realizado com sucesso!',
+                user: {
+                    id: newUser.id,
+                    name: newUser.name,
+                    email: newUser.email
+                }
+            });
         });
 
     } catch (err) {

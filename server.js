@@ -53,6 +53,11 @@ if (!publicVapidKey || !privateVapidKey || !vapidMailto) {
     console.log("✅ Chaves VAPID configuradas - notificações push ativas");
 }
 
+// Confiar no proxy da Vercel para cookies seguros
+if (process.env.NODE_ENV === 'production') {
+    app.set('trust proxy', 1);
+}
+
 // Configurar Sessão com PostgreSQL para Persistência
 app.use(session({
     store: new pgSession({
@@ -68,7 +73,8 @@ app.use(session({
         httpOnly: true,                  // Impede acesso via JavaScript
         maxAge: 24 * 60 * 60 * 1000,    // 24 horas
         sameSite: 'lax'                  // Proteção contra CSRF
-    }
+    },
+    proxy: process.env.NODE_ENV === 'production'  // Confiar em proxy reverso
 }));
 
 // Configurar View Engine (Handlebars)
